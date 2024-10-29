@@ -1,0 +1,28 @@
+ eksctl delete cluster --name=eksc --region=ap-south-1
+  71 history
+  72 eksctl create cluster --name=eksp --region=ap-south-1 --zones=ap-south-1a,ap-south-1b --version=1.30 --without-nodegroup
+  73  eksctl create nodegroup --cluster=eksp --region=ap-south-1 --name=ekscng --node-type=t3.medium --nodes=2 --nodes-min=2 --nodes-max=4 --node-volume-size=20 --ssh-access --ssh-public-key=nexus --managed --asg-access --alb-ingress-access --external-dns-access --full-ecr-access --appmesh-access
+  75 aws eks update-kubeconfig --name=eksp --region=ap-south-1
+  76 eksctl utils write-kubeconfig --cluster=eksp
+  77 ls
+  78 nano d.yml
+  80 nan0 s.yml
+  82 nano hpa.yml
+  83 kubectl apply -f .\d.yml
+  88 kubectl apply -f hpa.yml
+  89 kubectl apply -f s.yml
+  90 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml #(deploy meteric server with this command)
+  91 kubectl get deployment metrics-server -n kube-system
+  92 kubectl top pods
+  93 kubectl top node
+  96 kubetcl get svc
+  99 nano test.sh
+ 101 ./test.sh
+ 104 kubectl get svc
+ 105 kubectl top pods
+ 106 kubectl top nodes
+ 107 kubectl get pods
+ 108 kubectl top nodes
+ 109 eksctl delete cluster --name=eksp --region=ap-south-1
+
+
